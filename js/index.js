@@ -11,17 +11,22 @@ let rotations = 360;
 async function getData(url) {
     try {
         console.log('getting data');
+        //waiting until fetch function returns response
         let response = await fetch(url);
+        //waiting until response is converted to JSON format
         let data = await response.json();
         console.log('data retrieved');
         return data;
     }
     catch (err) {
+        //erro handling
         console.error("Error: ", err);
     }
 }
 
 async function loadData() {
+    
+    //waing until we get the data 
     let data = await getData('https://deckofcardsapi.com/api/deck/new/draw/?count=3');
     cards = data.cards;
     cardImage.src = cards[currentIndex].image;
