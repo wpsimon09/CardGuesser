@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card guesser</title>
+    <link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+    <div class="mainPlaceHolder">
+        <h1>Is this your card ?</h1>
+        <div class="cardWithActions">
+            <div class="card">
+                <img class="card" id="cardImage" alt="card">
+            </div>
+            <div class="actions">
+                <button class="yesButton yesBackground" onclick="yesClick()">
+                    Yes
+                </button>
+                <button class="noButton noBackground" onclick="noClick()">
+                    No
+                </button>
+            </div>
+        </div>
+        <div id="popUp" class="popup">
+            <h1 id="popUpHeader" class="popupHeader">You lost</h1>
+            <button onclick="resetGame()" class="tryAgain">Try again</button>
+        </div>
+    </div>
+    <div class="mask" id="mask"></div>
+    <script src="js/index.js"></script>
+</body>
+</html>
