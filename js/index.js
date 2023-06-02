@@ -6,7 +6,8 @@ let cardImage = document.getElementById('cardImage');
 let popUp = document.getElementById('popUp');
 let mask = document.getElementById('mask');
 let popUpHeader = document.getElementById('popUpHeader');
-let rotations = 360;
+let attempts = document.getElementById('attempts');
+let rotations = 0;
 
 async function getData(url) {
     try {
@@ -25,11 +26,13 @@ async function getData(url) {
 }
 
 async function loadData() {
-    
+
     //waing until we get the data 
-    let data = await getData('https://deckofcardsapi.com/api/deck/new/draw/?count=3');
+    let data = await getData('https://deckofcardsapi.com/api/deck/new/draw/?count=5');
     cards = data.cards;
+    attempts.innerHTML = `Attempt: ${currentIndex+1}/5`;
     cardImage.src = cards[currentIndex].image;
+    rotations = 0;
 }
 
 loadData();
@@ -41,11 +44,12 @@ function yesClick(){
 }
 
 function noClick() {
-    if(currentIndex < 2) {
+    if(currentIndex < 4) {
         currentIndex++;
+        rotations += 360;
+        attempts.innerHTML = `Attempt: ${currentIndex+1}/5`;
         cardImage.style.rotate = `y ${rotations}deg`
         cardImage.src = cards[currentIndex].image;
-        rotations += 360;
     }
     else {
         popUpHeader.innerHTML = "You lost :("
@@ -55,9 +59,9 @@ function noClick() {
 }
 
 function resetGame() {
-    rotations = 360;
-    hidePopUp();
+    rotations = 0;
     currentIndex = 0;
+    hidePopUp();
     loadData();
 }
 
